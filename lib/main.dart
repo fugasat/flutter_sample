@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sample/data_manager.dart';
+import 'package:flutter_sample/data_model.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,13 +31,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
   final items = List<String>.generate(3, (i) => "Model $i");
-
 
   void _incrementCounter() {
     setState(() {
-      _counter++;
       items.add("Model X");
     });
   }
