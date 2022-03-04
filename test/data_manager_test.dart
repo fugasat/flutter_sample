@@ -3,6 +3,12 @@ import 'package:flutter_sample/data_manager.dart';
 import 'package:flutter_sample/data_model.dart';
 
 void main() {
+  test('get model name.', () {
+    expect(DataModel(1).getName(), "Model 1");
+    expect(DataModel(-1).getName(), "Model -1");
+    expect(DataModel(100).getName(), "Model 100");
+  });
+
   test('add model.', () {
     final manager = DataManager();
     expect(manager.models.length, 0);

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sample/data_manager.dart';
 import 'package:flutter_sample/data_model.dart';
+import 'package:flutter_sample/detail_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,11 +32,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final items = List<String>.generate(3, (i) => "Model $i");
+  final DataManager dataManager = DataManager();
 
   void _incrementCounter() {
     setState(() {
-      items.add("Model X");
+      dataManager.add();
     });
   }
 
@@ -48,10 +49,14 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Container(
         width: double.infinity,
         child: ListView.builder(
-          itemCount: items.length,
+          itemCount: dataManager.models.length,
           itemBuilder: (context, index) {
+            final DataModel model = dataManager.models[index];
             return ListTile(
-              title: Text('${items[index]}'),
+              title: Text(model.getName()),
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(model)));
+              },
             );
           },
         ),
