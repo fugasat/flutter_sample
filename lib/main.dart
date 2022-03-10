@@ -34,7 +34,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final DataManager dataManager = DataManager();
 
-  void _incrementCounter() {
+  void _addModel() {
     setState(() {
       dataManager.add();
     });
@@ -55,14 +55,14 @@ class _MyHomePageState extends State<MyHomePage> {
             return ListTile(
               title: Text(model.getName()),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(model)));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(dataManager, index)));
               },
             );
           },
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: _addModel,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
