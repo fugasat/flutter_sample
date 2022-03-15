@@ -54,8 +54,17 @@ class _MyHomePageState extends State<MyHomePage> {
             final DataModel model = dataManager.models[index];
             return ListTile(
               title: Text(model.getName()),
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(dataManager, index)));
+              onTap: () async {
+                final result = await Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(model)));
+                if (result == null) {
+                  setState(() {
+                    dataManager.remove(model);
+                  });
+                } else {
+                  setState(() {
+                    model.id = result.id;
+                  });
+                }
               },
             );
           },
