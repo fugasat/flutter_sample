@@ -4,13 +4,12 @@ import 'package:flutter_sample/data_manager.dart';
 
 class DetailPage extends StatelessWidget {
 
-  DetailPage(this.model);
-  DataModel model;
   DataModel? result = null;
 
   @override
   Widget build(BuildContext context) {
-    result = model;
+    final args = ModalRoute.of(context)?.settings.arguments;
+    result = args as DataModel;
 
     return WillPopScope(
       onWillPop: () {
@@ -24,7 +23,7 @@ class DetailPage extends StatelessWidget {
         body: Column(
           children: <Widget>[
             Container(
-              child: Text(model.getName()),
+              child: Text(result!.getName()),
             ),
             TextButton(
               onPressed: () {

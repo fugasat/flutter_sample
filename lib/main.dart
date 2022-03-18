@@ -14,11 +14,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // Navigator
+      routes: {
+        '/': (context) => MyHomePage(title: 'Model List'),
+        '/detail': (context) => DetailPage(),
+      },
+      initialRoute: "/",
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Model List'),
     );
   }
 }
@@ -55,14 +60,14 @@ class _MyHomePageState extends State<MyHomePage> {
             return ListTile(
               title: Text(model.getName()),
               onTap: () async {
-                final result = await Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(model)));
+                final result = await Navigator.of(context).pushNamed('/detail', arguments: model);
                 if (result == null) {
                   setState(() {
                     dataManager.remove(model);
                   });
                 } else {
                   setState(() {
-                    model.id = result.id;
+                    model.id = (result as DataModel).id;
                   });
                 }
               },
