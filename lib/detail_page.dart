@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sample/data_model.dart';
-import 'package:flutter_sample/data_manager.dart';
 
 class DetailPage extends StatelessWidget {
 
-  DataModel? result = null;
+  const DetailPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)?.settings.arguments;
-    result = args as DataModel;
+    DataModel result = args as DataModel;
 
     return WillPopScope(
       onWillPop: () {
@@ -22,14 +21,12 @@ class DetailPage extends StatelessWidget {
         ),
         body: Column(
           children: <Widget>[
-            Container(
-              child: Text(result!.getName()),
-            ),
+            Text(result.getName()),
             TextButton(
               onPressed: () {
                 Navigator.pop(context, null); // 元画面への戻り値はnullを設定
               },
-              child: Text('Remove'),
+              child: const Text('Remove'),
             ),
           ],
         ),

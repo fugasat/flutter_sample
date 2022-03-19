@@ -23,14 +23,13 @@ import 'widget_test.mocks.dart';
   ],
 )
 void main() {
-  final observerMock = MockNavigatorObserver();
 
   testWidgets('app widgets test', (WidgetTester tester) async {
     final mockObserver = MockNavigatorObserver();
     await tester.pumpWidget(
       MaterialApp(
         routes: {
-          '/': (context) => MyHomePage(title: 'Test Model List'),
+          '/': (context) => const MyHomePage(title: 'Test Model List'),
           '/detail': (context) => DetailPage(),
         },
         initialRoute: "/",
@@ -91,7 +90,6 @@ void main() {
     expect(find.text('Model 0'), findsOneWidget);
     expect(find.text('Model 1'), findsNothing);
     expect(find.text('Model 2'), findsOneWidget);
-
 
   });
 }

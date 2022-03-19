@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       // Navigator
       routes: {
-        '/': (context) => MyHomePage(title: 'Model List'),
+        '/': (context) => const MyHomePage(title: 'Model List'),
         '/detail': (context) => DetailPage(),
       },
       initialRoute: "/",
@@ -51,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Container(
+      body: SizedBox(
         width: double.infinity,
         child: ListView.builder(
           itemCount: dataManager.models.length,
